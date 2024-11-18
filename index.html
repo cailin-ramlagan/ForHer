@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Her!</title>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div
+        class="tenor-gif-embed"
+        data-postid="22885016"
+        data-share-method="host"
+        data-aspect-ratio="1.04918"
+        data-width="100%"
+      >
+        <a href="https://tenor.com/view/manja-gif-22885016">Manja Sticker</a
+        >from
+        <a href="https://tenor.com/search/manja-stickers">Manja Stickers</a>
+      </div>
+
+      <script
+        type="text/javascript"
+        async
+        src="https://tenor.com/embed.js"
+      ></script>
+
+      <h1>Happy Birthday!!</h1>
+      <p>I love you babyyy!</p>
+
+      <div class="btn">
+        <a href="yes.html">To my pretty girl...</a>
+      </div>
+
+      <div class="heart">
+        <button onclick="showPopup()" class="btn-class-name">
+          <span class="back"></span>
+          <span class="front"></span>
+        </button>
+        <div id="popup">
+          <canvas id="heartCanvas" width="700" height="700"></canvas>
+          <div class="closebtn">
+            <button
+              onclick="hidePopup()"
+              style="
+                text-decoration: none;
+                color: #111;
+                background: #fff;
+                padding: 10px 25px;
+                border-radius: 8px;
+                box-shadow: 0.5rem 1rem 3rem hsl(0, 0%, 0%, 0.3);
+                margin: 20px;
+              "
+            >
+              ฅ^•ﻌ•^ฅ
+            </button>
+          </div>
+        </div>
+
+        <script>
+          let i = 0;
+          let animationFrameId;
+
+          function showPopup() {
+            document.getElementById("popup").style.display = "block";
+            i = 0; // Reset index for animation
+            drawHeart();
+          }
+
+          function hidePopup() {
+            document.getElementById("popup").style.display = "none";
+            cancelAnimationFrame(animationFrameId); // Stop the animation if the popup is closed
+          }
+
+          function drawHeart() {
+            let canvas = document.getElementById("heartCanvas");
+            let ctx = canvas.getContext("2d");
+            let hearta = (k) => 15 * Math.sin(k) ** 3;
+            let heartb = (k) =>
+              12 * Math.cos(k) -
+              5 * Math.cos(2 * k) -
+              2 * Math.cos(3 * k) -
+              Math.cos(4 * k);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+            ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to the center of the canvas
+
+            ctx.strokeStyle = "#f73487";
+            ctx.fillStyle = "#f73487"; // Fill color for the heart
+            ctx.beginPath();
+
+            function animate() {
+              if (i < 6000) {
+                let x = hearta(i / 100) * 20; // Keep the heart size the same
+                let y = -heartb(i / 100) * 20; // Flip the heart vertically but keep it small
+
+                if (i === 0) {
+                  ctx.moveTo(x, y); // Start from the first point
+                } else {
+                  ctx.lineTo(x, y); // Draw line to next point
+                }
+
+                ctx.stroke(); // Render the outline of the current segment
+                i++; // Increment to the next point
+                animationFrameId = requestAnimationFrame(animate); // Schedule next frame
+              } else {
+                ctx.closePath();
+                ctx.fill(); // Fill the heart once the drawing is complete
+                ctx.stroke(); // Final stroke to ensure outline is rendered
+              }
+            }
+
+            animate(); // Start animation loop
+          }
+        </script>
+      </div>
+
+      <p class="pyheart">Click me!</p>
+    </div>
+  </body>
+</html>
